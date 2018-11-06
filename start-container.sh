@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # the default node number is 3
-N=${1:-3}
+N=3
 
 
 # start hadoop master container
@@ -13,7 +13,7 @@ sudo docker run -itd \
                 -p 8088:8088 \
                 --name hadoop-master \
                 --hostname hadoop-master \
-                hadoop-pypip &> /dev/null
+                donaldding/hadoop-pypip:1.0 &> /dev/null
 
 
 # start hadoop slave container
@@ -26,7 +26,7 @@ do
 	                --net=hadoop \
 	                --name hadoop-slave$i \
 	                --hostname hadoop-slave$i \
-	                hadoop-pypip &> /dev/null
+	                donaldding/hadoop-pypip:1.0 &> /dev/null
 	i=$(( $i + 1 ))
 done 
 
